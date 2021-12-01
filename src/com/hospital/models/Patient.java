@@ -14,11 +14,12 @@ public class Patient extends Person{
 	public Patient(){
 
 	}
-	public Patient(String firstname, String lastname, String phone, String address,Date hospitalEntryDate,String affiliationNumber,InsuranceType insuranceType) {
+	public Patient(String firstname, String lastname, String phone, String address,Date hospitalEntryDate,String affiliationNumber,InsuranceType insuranceType,Double wallet) {
 		super(firstname, lastname, phone, address);
 		this.hospitalEntryDate = hospitalEntryDate;
 		this.affiliationNumber = affiliationNumber;
 		this.insuranceType = insuranceType;
+		this.wallet = wallet;
 	}
 
 	public Date getHospitalEntryDate() {
@@ -39,6 +40,10 @@ public class Patient extends Person{
 
 	public void setWallet(Double wallet) {
 		this.wallet = wallet;
+	}
+
+	public void addToWallet(Double amount){
+		this.wallet = this.wallet + amount;
 	}
 
 	public void setAffiliationNumber(String affiliationNumber) {

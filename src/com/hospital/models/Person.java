@@ -7,7 +7,6 @@ public class Person {
 	private String lastname;
 	private String phone;
 	private String address;
-
 	public Person(){
 
 	}

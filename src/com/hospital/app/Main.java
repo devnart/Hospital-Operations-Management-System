@@ -36,8 +36,8 @@ public class Main {
         InsuranceType insurance = InsuranceType.CNOPS;
         InsuranceType insurance2 = InsuranceType.RAMED;
 
-        Patient patient = new Patient("Salma","Kalkhi","0909876","Seb gwoula",entry,"0876",insurance);
-        Patient patient2 = new Patient("Achraf","LOLKI","0909876","Lamiae",entry,"0876",insurance2);
+        Patient patient = new Patient("Salma","Kalkhi","0909876","Seb gwoula",entry,"0876",insurance,298.97);
+        Patient patient2 = new Patient("Achraf","LOLKI","0909876","Lamiae",entry,"0876",insurance2,524.12);
 
         patients.add(patient);
         patients.add(patient2);
@@ -48,7 +48,7 @@ public class Main {
         Hospital hospital = new Hospital("BCH","Berkane",doctors,nurses,rooms);
 
         OperationImpl operation = new OperationImpl();
-        operation.addOperation(operations,hospital,doctors,nurses,patients,rooms);
+        operation.addOperation(operations,hospital,doctor,nurses,patient2,room);
 
         for (Operation op: operations) {
             System.out.println(op);

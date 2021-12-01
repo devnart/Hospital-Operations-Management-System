@@ -3,19 +3,20 @@ package com.hospital.models;
 import com.hospital.interfaces.OperationInterface;
 
 import javax.print.Doc;
+import java.util.List;
 
 public class Operation {
 
     private Hospital hospital;
-    private int room;
-    private int doctor;
-    private int nurse;
-    private int patient;
+    private Room room;
+    private Doctor doctor;
+    private List<Nurse> nurse;
+    private Patient patient;
     private Double cost;
     private Double toPay;
     private String status;
 
-    public Operation(Hospital hospital, int room, int doctor, int nurse, int patient, Double cost, Double toPay) {
+    public Operation(Hospital hospital, Room room, Doctor doctor, List<Nurse> nurse, Patient patient, Double cost, Double toPay) {
         this.hospital = hospital;
         this.room = room;
         this.doctor = doctor;
@@ -30,7 +31,7 @@ public class Operation {
         return hospital;
     }
 
-    public int getRoom() {
+    public Room getRoom() {
         return room;
     }
 

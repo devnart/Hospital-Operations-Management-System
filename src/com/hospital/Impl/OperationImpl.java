@@ -19,78 +19,52 @@ public class OperationImpl implements OperationInterface{
 	}
 
 	@Override
-	public void addOperation(List<Operation> operations, Hospital hospital, List<Doctor> doctors, List<Nurse> nurses,List<Patient> patients,List<Room> rooms) {
+	public void addOperation(List<Operation> operations, Hospital hospital, Doctor doctor, List<Nurse> nurses,Patient patient,Room room) {
 		// TODO Auto-generated method stub
 
 		System.out.println("Hospital : " + hospital.getName());
-		System.out.println("Room number : ");
+		System.out.println("Room number : " + room.getNumber() + " Stage : " + room.getStage());
+		System.out.println("Patient Id : " + patient.getId() +" - "+ patient.getFirstname()+" "+ patient.getLastname() );
+		System.out.println("Doctor :" + doctor.getId()+" - "+ doctor.getFirstname()+" "+ doctor.getLastname());
 
-		int roomId = scanner.nextInt();
-
-		Room rm = new Room();
-		while (!rm.isAvailable(roomId,rooms)) {
-			System.out.println("Unavailable room choose another one :");
-			roomId = scanner.nextInt();
-		}
-
-
-		System.out.println("Patient Id : ");
-		for (Patient patient: patients) {
-			System.out.println( patient.getId() + ". " + patient.getFirstname() + " " + patient.getLastname());
-		}
-		int patientId = scanner.nextInt();
-
-		Patient pt = new Patient();
-		while (!pt.isAvailable(patientId,patients)) {
-			System.out.println("Unavailable patient choose another one :");
-			patientId = scanner.nextInt();
-		}
-
-		System.out.println("Doctor :");
-		for (Doctor doctor: doctors) {
-			System.out.println( doctor.getId() + ". " + doctor.getFirstname() + " " + doctor.getLastname());
-		}
-		int docId = scanner.nextInt();
-
-		Doctor dr = new Doctor();
-		while (!dr.isAvailable(docId,doctors)) {
-			System.out.println("Unavailable doctor choose another one :");
-			docId = scanner.nextInt();
-		}
-
+		System.out.println("Nurses :");
 		for (Nurse nurse: nurses) {
 			System.out.println( nurse.getId() + ". " + nurse.getFirstname() + " " + nurse.getLastname());
-		}
-
-		System.out.println("Nurse :");
-		int nurseId = scanner.nextInt();
-
-		Nurse nr = new Nurse();
-		while (!nr.isAvailable(nurseId,nurses)) {
-			System.out.println("Unavailable nurse choose another one :");
-			nurseId = scanner.nextInt();
 		}
 
 		System.out.println("Operation cost :");
 		double cost = scanner.nextInt();
 
+		while(cost > patient.getWallet()) {
+			System.out.println("You don't have enough money you poor little thing");
+			System.out.println("1. Add Money");
+			System.out.println("2. Check wallet");
+			System.out.println("3. Exit");
+
+			int choice = scanner.nextInt();
+
+			switch (choice) {
+				case 1 :System.out.println("amount : "); patient.addToWallet(scanner.nextDouble());break;
+				case 2 :System.out.println(patient.getWallet());break;
+				case 3 : System.exit(0);
+			}
+
+		}
 		// insurance
 		double toPay = cost;
 		InsuranceType insType = null;
 
-		for (Patient patient: patients) {
-			if (patient.getId() == patientId) {
-				 insType = patient.getInsuranceType();
+		insType = patient.getInsuranceType();
 
-				 switch (insType){
-					 case CNOPS: patient.setWallet(cost);break;
-					 case RAMED: patient.setWallet(cost*0.8);toPay = cost * 0.2;break;
-					 case CNSS: patient.setWallet(cost*0.7);break;
-				 }
-			}
+		switch (insType){
+			 case CNOPS: patient.setWallet(cost);break;
+			 case RAMED: patient.setWallet(cost*0.8);toPay = cost * 0.2;break;
+			 case CNSS: patient.setWallet(cost*0.7);break;
 		}
 
-		Operation operation = new Operation(hospital,roomId,docId,nurseId,patientId,cost,toPay);
+
+
+		Operation operation = new Operation(hospital,room,doctor,nurses,patient,cost,toPay);
 		operations.add(operation);
 
 

@@ -10,5 +10,5 @@ public interface OperationInterface {
 
 	public Optional<Operation> getOperationByRef(int ref);
 	
-	public void addOperation(List<Operation> operations, Hospital hospital, List<Doctor> doctors, List<Nurse> nurses,List<Patient> patients,List<Room> rooms);
+	public void addOperation(List<Operation> operations, Hospital hospital, Doctor doctor, List<Nurse> nurses,Patient patient,Room room);
 }
