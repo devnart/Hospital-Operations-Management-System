@@ -38,6 +38,7 @@ public class Patient extends Person{
 		return wallet;
 	}
 
+
 	public void setWallet(Double wallet) {
 		this.wallet = wallet;
 	}

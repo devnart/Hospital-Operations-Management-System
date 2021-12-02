@@ -1,5 +1,6 @@
 package com.hospital.models;
 
+import com.hospital.enumerations.operationType;
 import com.hospital.interfaces.OperationInterface;
 
 import javax.print.Doc;
@@ -15,8 +16,9 @@ public class Operation {
     private Double cost;
     private Double toPay;
     private String status;
+    private operationType type;
 
-    public Operation(Hospital hospital, Room room, Doctor doctor, List<Nurse> nurse, Patient patient, Double cost, Double toPay) {
+    public Operation(Hospital hospital, Room room, Doctor doctor, List<Nurse> nurse, Patient patient, Double cost, Double toPay,operationType type) {
         this.hospital = hospital;
         this.room = room;
         this.doctor = doctor;
@@ -24,7 +26,7 @@ public class Operation {
         this.patient = patient;
         this.cost = cost;
         this.toPay = toPay;
-
+this.type = type;
     }
 
     public Hospital getHospital() {

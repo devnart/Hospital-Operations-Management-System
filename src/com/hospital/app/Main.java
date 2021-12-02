@@ -1,7 +1,9 @@
 package com.hospital.app;
 
+import com.hospital.Impl.MailImpl;
 import com.hospital.Impl.OperationImpl;
 import com.hospital.enumerations.InsuranceType;
+import com.hospital.enumerations.operationType;
 import com.hospital.models.*;
 
 import java.util.ArrayList;
@@ -48,10 +50,15 @@ public class Main {
         Hospital hospital = new Hospital("BCH","Berkane",doctors,nurses,rooms);
 
         OperationImpl operation = new OperationImpl();
-        operation.addOperation(operations,hospital,doctor,nurses,patient2,room);
 
-        for (Operation op: operations) {
-            System.out.println(op);
-        }
+        operationType opType = operationType.URGENT;
+        operation.addOperation(operations,hospital,doctor,nurses,patient2,room,opType);
+
+        MailImpl mail = new MailImpl();
+
+        // generate string from operation
+        String str = mail.generateString(operations);
+
+        mail.sendMail("igpttdev@gmail.com","Operation Report",str);
     }
 }
