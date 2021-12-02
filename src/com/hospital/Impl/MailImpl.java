@@ -10,8 +10,8 @@ public class MailImpl implements MailInterface {
 
     public void sendMail(String to, String subject, String body) {
 
-        final String username = "hr.fb001@gmail.com";
-        final String password = "zavucelhbryyyqgu";
+        final String username = "your mail";
+        final String password = "password";
 
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
